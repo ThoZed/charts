@@ -159,6 +159,8 @@ spec:
           {{- end }}
             - name: kubectl
               mountPath: /k8s
+            - name: csv-files
+              mountPath: /etc/graylog/             
           lifecycle:
             preStop:
               exec:
@@ -170,6 +172,16 @@ spec:
                       curl -XPOST -sS -u "{{ .Values.graylog.rootUsername }}:${ROOT_PASSWORD}" "localhost:9000/api/system/shutdown/shutdown"
       terminationGracePeriodSeconds: {{ default 30 .Values.graylog.terminationGracePeriodSeconds }}
       volumes:
+        - name: csv-files
+          configMap:
+            name: {{ template "graylog.fullname" . }}
+            items:
+              - key: countrycode_lookup_table.csv
+                path: countrycode_lookup_table.csv
+                mode: 292 # 0444
+              - key: fireware_msg_id_lookup_table.csv
+                path: fireware_msg_id_lookup_table.csv
+                mode: 292 # 0444                
         - name: config
           configMap:
             name: {{ template "graylog.fullname" . }}
