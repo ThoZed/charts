@@ -20,6 +20,7 @@ spec:
       protocol: UDP
       targetPort: 55514
   clusterIP:
+{{- if .Values.graylog.input.udp }}
   {{- range .Values.graylog.input.udp.ports }}
     - name: {{ .name }}
       port: {{ .port }}
@@ -54,4 +55,5 @@ spec:
   - {{ . }}
   {{- end }}
   {{- end -}}
+{{- end -}}
 {{- end -}}
