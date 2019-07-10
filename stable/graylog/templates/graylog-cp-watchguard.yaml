@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "graylog.fullname" . }}
+  name: {{ template "graylog.fullname" . }}-csv-files
   labels:
     app.kubernetes.io/name: {{ template "graylog.name" . }}
     helm.sh/chart: {{ template "graylog.chart" . }}
