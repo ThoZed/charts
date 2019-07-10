@@ -174,7 +174,7 @@ spec:
       volumes:
         - name: csv-files
           configMap:
-            name: {{ template "graylog.fullname" . }}
+            name: {{ template "graylog.fullname" . }}-csv-files
             items:
               - key: countrycode_lookup_table.csv
                 path: countrycode_lookup_table.csv
@@ -199,7 +199,7 @@ spec:
               - key: entrypoint.sh
                 path: entrypoint.sh
                 mode: 365 # 0555
-        {{- if .Values.graylog.serverFiles }}
+        {{- if .Values.graylog.server}}
         - name: files
           configMap:
             name: {{ template "graylog.fullname" . }}-files
