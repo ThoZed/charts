@@ -15,5 +15,7 @@ spec:
       port: 55514
       protocol: UDP
       targetPort: 55514
-  clusterIP:
--
+  clusterIP: NULL  
+  selector:
+    app.kubernetes.io/name: {{ template "graylog.name" . }}
+    app.kubernetes.io/instance: "{{ .Release.Name }}"
