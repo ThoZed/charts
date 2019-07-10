@@ -11,7 +11,7 @@ metadata:
     app.kubernetes.io/component: "UDP"
 spec:
   ports:
-      - name: wgsyslog
+    - name: wgsyslog
       port: 55514
       protocol: UDP
       targetPort: 55514
