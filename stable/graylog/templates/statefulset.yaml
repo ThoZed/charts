@@ -111,6 +111,7 @@ spec:
               name: graylog
             - containerPort: 55514
               name: wgsyslog
+              protocol: UDP
           {{- with .Values.graylog.input }}
           {{- if .udp }}
           {{- range .udp.ports }}
