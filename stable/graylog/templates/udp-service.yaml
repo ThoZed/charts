@@ -1,4 +1,3 @@
-{{- if .Values.graylog.input.udp }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -16,6 +15,11 @@ metadata:
     app.kubernetes.io/component: "UDP"
 spec:
   ports:
+      - name: wgsyslog
+      port: 55514
+      protocol: UDP
+      targetPort: 55514
+  clusterIP:
   {{- range .Values.graylog.input.udp.ports }}
     - name: {{ .name }}
       port: {{ .port }}
@@ -51,4 +55,3 @@ spec:
   {{- end }}
   {{- end -}}
 {{- end -}}
-{{- end }}
